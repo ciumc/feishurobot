@@ -1,4 +1,4 @@
-module github.com/cium-cc/feishurobot
+module github.com/ciumc/feishurobot
 
 go 1.16
 

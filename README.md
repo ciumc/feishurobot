@@ -17,7 +17,7 @@ A Go SDK toolkit for Feishu (Lark) custom bot webhook API, supporting message se
 ## Installation
 
 ```bash
-go get github.com/cium-cc/feishurobot
+go get github.com/ciumc/feishurobot
 ```
 
 ## Quick Start
@@ -31,7 +31,7 @@ import (
     "context"
     "log"
 
-    "github.com/cium-cc/feishurobot"
+    "github.com/ciumc/feishurobot"
 )
 
 func main() {

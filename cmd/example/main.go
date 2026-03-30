@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/cium-cc/feishurobot"
+	"github.com/ciumc/feishurobot"
 )
 
 func main() {

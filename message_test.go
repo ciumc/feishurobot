@@ -19,7 +19,7 @@ func TestNewTextMessage(t *testing.T) {
 			text: "Hello, world!",
 			want: &Message{
 				MsgType: MsgTypeText,
-				Content: map[string]any{
+				Content: map[string]interface{}{
 					"text": "Hello, world!",
 				},
 			},
@@ -30,7 +30,7 @@ func TestNewTextMessage(t *testing.T) {
 			text: "",
 			want: &Message{
 				MsgType: MsgTypeText,
-				Content: map[string]any{
+				Content: map[string]interface{}{
 					"text": "",
 				},
 			},
@@ -41,7 +41,7 @@ func TestNewTextMessage(t *testing.T) {
 			text: `<at user_id="ou_xxx">Tom</at> new update`,
 			want: &Message{
 				MsgType: MsgTypeText,
-				Content: map[string]any{
+				Content: map[string]interface{}{
 					"text": `<at user_id="ou_xxx">Tom</at> new update`,
 				},
 			},
@@ -52,7 +52,7 @@ func TestNewTextMessage(t *testing.T) {
 			text: `<at user_id="all">所有人</at> announcement`,
 			want: &Message{
 				MsgType: MsgTypeText,
-				Content: map[string]any{
+				Content: map[string]interface{}{
 					"text": `<at user_id="all">所有人</at> announcement`,
 				},
 			},
@@ -93,11 +93,11 @@ func TestNewPostMessage(t *testing.T) {
 			),
 			want: &Message{
 				MsgType: MsgTypePost,
-				Content: map[string]any{
-					"post": map[string]any{
-						"zh_cn": map[string]any{
+				Content: map[string]interface{}{
+					"post": map[string]interface{}{
+						"zh_cn": map[string]interface{}{
 							"title": "Project Update",
-							"content": [][]map[string]any{
+							"content": [][]map[string]interface{}{
 								{
 									{"tag": "text", "text": "Project has been updated successfully."},
 								},
@@ -117,11 +117,11 @@ func TestNewPostMessage(t *testing.T) {
 			),
 			want: &Message{
 				MsgType: MsgTypePost,
-				Content: map[string]any{
-					"post": map[string]any{
-						"en_us": map[string]any{
+				Content: map[string]interface{}{
+					"post": map[string]interface{}{
+						"en_us": map[string]interface{}{
 							"title": "",
-							"content": [][]map[string]any{
+							"content": [][]map[string]interface{}{
 								{
 									{"tag": "text", "text": "Simple post content"},
 								},
@@ -144,11 +144,11 @@ func TestNewPostMessage(t *testing.T) {
 			),
 			want: &Message{
 				MsgType: MsgTypePost,
-				Content: map[string]any{
-					"post": map[string]any{
-						"zh_cn": map[string]any{
+				Content: map[string]interface{}{
+					"post": map[string]interface{}{
+						"zh_cn": map[string]interface{}{
 							"title": "Title",
-							"content": [][]map[string]any{
+							"content": [][]map[string]interface{}{
 								{
 									{"tag": "text", "text": "Project has been updated: "},
 									{"tag": "a", "text": "View", "href": "http://www.example.com/"},
@@ -172,11 +172,11 @@ func TestNewPostMessage(t *testing.T) {
 			),
 			want: &Message{
 				MsgType: MsgTypePost,
-				Content: map[string]any{
-					"post": map[string]any{
-						"zh_cn": map[string]any{
+				Content: map[string]interface{}{
+					"post": map[string]interface{}{
+						"zh_cn": map[string]interface{}{
 							"title": "Notify",
-							"content": [][]map[string]any{
+							"content": [][]map[string]interface{}{
 								{
 									{"tag": "text", "text": "Notification for "},
 									{"tag": "at", "user_id": "ou_xxx", "user_name": "Tom"},
@@ -197,17 +197,17 @@ func TestNewPostMessage(t *testing.T) {
 			),
 			want: &Message{
 				MsgType: MsgTypePost,
-				Content: map[string]any{
-					"post": map[string]any{
-						"zh_cn": map[string]any{
+				Content: map[string]interface{}{
+					"post": map[string]interface{}{
+						"zh_cn": map[string]interface{}{
 							"title": "Title",
-							"content": [][]map[string]any{
+							"content": [][]map[string]interface{}{
 								{{"tag": "text", "text": "Content"}},
 							},
 						},
-						"en_us": map[string]any{
+						"en_us": map[string]interface{}{
 							"title": "Title",
-							"content": [][]map[string]any{
+							"content": [][]map[string]interface{}{
 								{{"tag": "text", "text": "Content"}},
 							},
 						},
@@ -256,7 +256,7 @@ func TestNewImageMessage(t *testing.T) {
 			imageKey: "img_ecffc3b9-8f14-400f-a014-05eca1a4310g",
 			want: &Message{
 				MsgType: MsgTypeImage,
-				Content: map[string]any{
+				Content: map[string]interface{}{
 					"image_key": "img_ecffc3b9-8f14-400f-a014-05eca1a4310g",
 				},
 			},
@@ -286,7 +286,7 @@ func TestNewShareChatMessage(t *testing.T) {
 			shareChatID: "oc_f5b1a7eb27ae2****339ff",
 			want: &Message{
 				MsgType: MsgTypeShareChat,
-				Content: map[string]any{
+				Content: map[string]interface{}{
 					"share_chat_id": "oc_f5b1a7eb27ae2****339ff",
 				},
 			},
@@ -307,34 +307,34 @@ func TestNewShareChatMessage(t *testing.T) {
 func TestNewInteractiveMessage(t *testing.T) {
 	tests := []struct {
 		name string
-		card map[string]any
+		card map[string]interface{}
 		want *Message
 	}{
 		{
 			name: "interactive message from Card",
-			card: map[string]any{
+			card: map[string]interface{}{
 				"schema": "2.0",
-				"body": map[string]any{
-					"elements": []map[string]any{
+				"body": map[string]interface{}{
+					"elements": []map[string]interface{}{
 						{"tag": "markdown", "content": "Hello!"},
 					},
 				},
-				"header": map[string]any{
-					"title":    map[string]any{"tag": "plain_text", "content": "Card Title"},
+				"header": map[string]interface{}{
+					"title":    map[string]interface{}{"tag": "plain_text", "content": "Card Title"},
 					"template": "blue",
 				},
 			},
 			want: &Message{
 				MsgType: MsgTypeInteractive,
-				Card: map[string]any{
+				Card: map[string]interface{}{
 					"schema": "2.0",
-					"body": map[string]any{
-						"elements": []map[string]any{
+					"body": map[string]interface{}{
+						"elements": []map[string]interface{}{
 							{"tag": "markdown", "content": "Hello!"},
 						},
 					},
-					"header": map[string]any{
-						"title":    map[string]any{"tag": "plain_text", "content": "Card Title"},
+					"header": map[string]interface{}{
+						"title":    map[string]interface{}{"tag": "plain_text", "content": "Card Title"},
 						"template": "blue",
 					},
 				},
@@ -470,7 +470,7 @@ func TestCardBuilder(t *testing.T) {
 		{
 			name: "card with config",
 			card: NewCard("2.0").
-				SetConfig(map[string]any{
+				SetConfig(map[string]interface{}{
 					"wide_screen_mode": true,
 				}).
 				SetBody(&CardBody{
@@ -703,7 +703,7 @@ func TestComplexPostMessage(t *testing.T) {
 func TestInteractiveCardMessage(t *testing.T) {
 	// Test building an interactive card with header, body, and buttons
 	card := NewCard("2.0").
-		SetConfig(map[string]any{
+		SetConfig(map[string]interface{}{
 			"wide_screen_mode": true,
 		}).
 		SetHeader(&CardHeader{

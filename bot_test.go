@@ -337,7 +337,7 @@ func TestMessageTypes(t *testing.T) {
 		},
 		{"image", NewImageMessage("img_key_123")},
 		{"share_chat", NewShareChatMessage("oc_12345")},
-		{"interactive", NewInteractiveMessageFromMap(map[string]any{"schema": "2.0"})},
+		{"interactive", NewInteractiveMessageFromMap(map[string]interface{}{"schema": "2.0"})},
 	}
 
 	for _, mt := range messageTypes {
@@ -366,5 +366,5 @@ func TestMessageTypes(t *testing.T) {
 var SuccessResponse = Response{
 	Code: 0,
 	Msg:  "success",
-	Data: make(map[string]any),
+	Data: make(map[string]interface{}),
 }
